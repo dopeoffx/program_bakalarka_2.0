@@ -5,11 +5,10 @@ from database.default_projects import get_projects
 from dotenv import load_dotenv
 
 class EnvironmentCommands():
-    #Přesun 
     def reload_projects_cmd(self, _):
         self.variables["projects"] = get_projects()
         print("Projekty načteny")
-    #Přesun 
+        
     def reload_config_cmd(self, _):
         print("Načítám znovu .env soubor...")
         try:
@@ -27,15 +26,14 @@ class EnvironmentCommands():
 
         except Exception as e:
             print(f"Chyba při načítání config.env: {e}")
-
-    #Přesun     
+   
     def reload_database_cmd(self, items):
         if items and items[0]:
             db_name = self._get_val(items[0])[1:-1]
         else:
             db_name = "bionano.db"
         self.reload_database(db_name)
-    #Přesun     
+  
     def reload_database(self, db_path="bionano.db"):
         try:
             if self.conn:
@@ -45,9 +43,7 @@ class EnvironmentCommands():
             print(f"Databáze znovu načtena: {db_path}")
         except Exception as e:
             print(f"Chyba při načítání databáze: {e}")
-    
-
-    #Přesun         
+       
     def load_functions_cmd(self, _):
         try:
             if "user_functions" in sys.modules:
@@ -66,10 +62,10 @@ class EnvironmentCommands():
             print("Uživatelské funkce byly načteny.")
         except Exception as e:
             print(f"Chyba při načítání uživatelských funkcí: {e}")
-    #Přesun 
+
     def load_types_cmd(self, _):
         self.load_user_types()
-    #Přesun 
+
     def load_user_types(self):
         try:
             if "user_types" in sys.modules:

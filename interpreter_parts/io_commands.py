@@ -8,15 +8,14 @@ from filtering_functions.files import find_files
 from SFPT_connection.SFTP_download_large_files import download_file_content
 from MY_DATA_TYPES import BNX, CMAP, XMAP
 
-class IOCommands:
-    #Přesun    
+class IOCommands: 
     def print_cmd(self, items):
         print("Zapinám print")
         
         value = self.wrap(items[0])
 
         print(value)  
-    #Přesun       
+     
     def print_list_cmd(self, items):
         print("Zapinám print_list")
         
@@ -25,9 +24,7 @@ class IOCommands:
         for record in value:
             print(record)
             print()
-       
-                
-    #Přesun           
+              
     def save_output_cmd(self, items):
         print("Zapínám save_output")
 
@@ -61,7 +58,6 @@ class IOCommands:
             except Exception as e:
                 print(f"Chyba při ukládání souboru `{filename}`: {e}")
 
-     #Přesun
     def loadfile_cmd(self, items):
         print("Zapinam loadfile")
         sftp = self.sftp_wrapper.get_sftp()
@@ -93,7 +89,6 @@ class IOCommands:
         except Exception as e:
             print(f"Chyba: Nelze přistoupit k SFTP: {e}")
             return
-
 
         try:
             print("Načítám obsah") 
