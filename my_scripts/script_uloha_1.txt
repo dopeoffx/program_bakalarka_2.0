@@ -1,0 +1,42 @@
+#run_script script_uloha_1.txt
+#run_script my_scripts/script_uloha_1.txt
+
+#a = find pipeline total_molecules_filtered < 2000
+
+#b = for a loadfile "all.bnx"
+
+#c = find alignbnx success=1 total_molecules_unfiltered<950000 total_molecules_unfiltered> 499999
+c = find(alignbnx, success=1, total_molecules_unfiltered<950000, total_molecules_unfiltered>499999)
+
+c = c[18]
+
+#d = for c loadfile "exp_refineFinal1.xmap"
+d = []
+
+#for i in c: b = loadfile "exp_refineFinal1.xmap"; append(d, b)
+#for i in c: b = loadfile "exp_refineFinal1.xmap" i; append(d, b)
+for i in c: b = loadfile("exp_refineFinal1.xmap", i); append(d, b)
+
+#e = for c loadfile "exp_refineFinal1_r.cmap"
+
+
+
+#h = filter(lambda x: {any(t[0] == 4325 for t in x["Alignment"][-5:])}, d[0].data)
+#h = filter(lambda x: {any(t[0] == 4325 for t in x["Alignment"][5:-5])}, d[0].data)
+#h = filter(lambda x: {any(t[0] <= 4325 for t in x["Alignment"][5:-5]) and any(t[0] >= 4325 for t in x["Alignment"][5:-5])}, d[0].data)
+
+f = 4325
+h = filter(lambda x: {any(t[0] <= f for t in x["Alignment"][5:-5]) and any(t[0] >= f for t in x["Alignment"][5:-5])}, d[0].data)
+
+n = map(lambda x: {x["QryContigID"]}, h)
+
+#w = for c loadfile "exp_refineFinal1_q.cmap"
+
+w = []
+
+#for i in c: b = loadfile "exp_refineFinal1_q.cmap"; append(w, b)
+#for i in c: b = loadfile "exp_refineFinal1_q.cmap" i; append(w, b)
+for i in c: b = loadfile("/data1/bionano-old/compute/jobs/469/output/contigs/alignmolvref/merge/exp_refineFinal1_q.cmap"); append(w, b)
+g = filter(lambda x: {x["CMapId"] in n}, w[0].data)
+
+print_list(g)

@@ -1,0 +1,10 @@
+a = find pipeline total_molecules_filtered < 100000 total_molecules_filtered > 3000
+
+save_output "output1.txt" a
+
+b = for a loadfile "all.bnx"
+save_output "output2.txt" b
+
+print b[0].data
+save_output "output3.txt" b[0].data
+save_output "output3.csv" b[0].data

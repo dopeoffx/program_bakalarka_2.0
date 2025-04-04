@@ -1,0 +1,9 @@
+a = [469]
+
+b = for a loadfile "exp_refineFinal1_r.cmap"
+
+c = for a loadfile "exp_refineFinal1.xmap"
+
+d = for b select lines where CMapId=1
+
+save

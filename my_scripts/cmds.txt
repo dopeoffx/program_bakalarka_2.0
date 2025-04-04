@@ -1,0 +1,121 @@
+a = find pipeline total_molecules_filtered > 300000
+
+a = find pipeline total_molecules_filtered > 3000000
+
+a = find pipeline total_molecules_filtered > 3105000
+
+a = find pipeline total_molecules_filtered < 2000
+
+a = find pipeline total_molecules_filtered < 3000
+
+a = find alignbnx total_molecules_unfiltered>3000
+
+b = find pipeline total_molecules_filtered < 100000 total_molecules_filtered > 3000
+
+for a loadfile "autoNoise0_q.cmap"
+
+for a b+=loadfile "autoNoise0_q.cmap"
+
+b = for a loadfile "autoNoise0_q.cmap"
+
+b = for a loadfile "all.bnx"
+
+for a select file where filename="sacasc.cmap"
+
+for a select file where filename="sacasc.cmap" AND file_size="csdcsc"
+
+for a select lines  where filename="sacasc.cmap"
+
+for a select lines  where filename="sacasc.cmap" AND file_size="csdcsc" OR asdasdf=36
+
+d = for b select lines  where SiteID=1 AND NumSites=134 OR ContigLength=159615.0 
+
+d = for b select sum(ascsac)  where SiteID=1 AND NumSites=134 OR ContigLength=159615.0
+
+d = for b select sum(ContigLength)  where SiteID=1 AND NumSites=134 OR ContigLength=159615.0
+
+e = for b select sum(ContigLength)  where SiteID=2 AND NumSites=134 OR ContigLength=159615.0
+
+g = d + e
+
+
+
+ for projects select projects
+
+ for projects select projects where contain_file="all.bnx"
+
+ a = find pipeline total_molecules_filtered > 3105000
+
+ b =  for a select projects where contain_file="all.bnx"
+
+b =  for a select projects where contain_string="pipeline attr="pid" val0="25614""
+
+b =  for a select projects where contain_string="pipeline"
+
+a = find pipeline total_molecules_filtered > 2000000
+
+b =  for a select files where contain_file="all.bnx" contain_string="pipeline"
+
+b =  for a select files where contain_file="all.bnx"
+
+b =  for a select files where contain_file="all.bnx" size_gt=20000k
+
+b =  for a select files where size_gt=20000k
+
+b =  for a select files where size_gt=2000M
+
+a = find pipeline total_molecules_filtered > 2000000
+
+b =  for a select files where size_gt=10000M
+
+c = b[1][0]
+
+d = for c loadfile
+
+b =  for a select files where size_gt=20000k contain_string="pipeline"
+
+c = b[0]
+
+a = 20
+
+b = 21
+
+c = a+b
+
+run_script script.txt
+
+run_script script2.txt
+
+run_script script3.txt
+
+run_script script4.txt
+
+run_script script5.txt
+
+run_script script6.txt
+
+run_script script7.txt
+
+run_script script8.txt
+
+run_script script9.txt
+
+run_script script10.txt
+
+a = find pipeline total_molecules_filtered < 3000
+
+b = for a loadfile "all.bnx"
+
+print b[0].data
+
+b =  for a select lines where position=inXmap(b)
+
+save_output "output2.txt" b[0].data
+
+
+
+c = find alignbnx success=1 total_molecules_unfiltered<950000 total_molecules_unfiltered> 499999
+
+c =c[1:5]
+
+c =c[1:-1]

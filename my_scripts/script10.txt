@@ -1,0 +1,15 @@
+#run_script script10.txt
+
+#d = for b select lines where CMapId=1
+
+load
+
+#d = for b select lines where CMapId=1 AND SiteID<20
+
+#d = for b select lines where CMapId=1  AND SiteID<200
+
+#d = for b select lines where CMapId=8 AND SiteID=1
+
+d = for b select lines where CMapId=8 AND SiteID=1
+
+e = for d select lines where position=inXmap(c)

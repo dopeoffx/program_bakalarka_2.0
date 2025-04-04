@@ -1,0 +1,9 @@
+h = for projects select projects
+
+g = for projects select projects where contain_file="all.bnx"
+
+a =  for projects select projects where contain_file="all.bnx"
+
+b =  for a select projects where contain_string="pipeline"
+
+

@@ -1,0 +1,7 @@
+a = find pipeline total_molecules_filtered > 2000000
+
+b =  for a select files where size_gt=10000M
+
+c = b[1][0]
+
+d = for c loadfile

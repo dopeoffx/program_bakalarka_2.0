@@ -1,0 +1,128 @@
+#run_script script_test_inXmap.txt
+
+#a = find alignbnx success=1 total_molecules_unfiltered<950000 total_molecules_unfiltered> 499999
+
+#a = a[18]
+
+#b = for a loadfile "exp_refineFinal1_r.cmap"
+
+#c = for a loadfile "exp_refineFinal1.xmap"
+
+#d = for b select lines where CMapId=8 AND SiteID=1
+
+#e = for d select lines where position=inXmap(c)
+
+#print e[0].data
+
+
+
+a = find pipeline total_molecules_filtered < 2000
+
+b = for a loadfile "all.bnx"
+
+c = find alignbnx success=1 total_molecules_unfiltered<950000 total_molecules_unfiltered> 499999
+
+c = c[18]
+
+d = for c loadfile "exp_refineFinal1.xmap"
+
+e = for c loadfile "exp_refineFinal1_r.cmap"
+
+w = for c loadfile "exp_refineFinal1_q.cmap"
+
+g = filter(lambda x: x["NumberofLabels"] == 26, b[0].data)
+
+h = filter(lambda x: {any(t[0] == 4325 for t in x["Alignment"][-5:])}, d[0].data)
+
+l = filter(lambda x: {any(t[0] == 4325 for t in x["Alignment"])}, d[0].data)
+
+o = map(lambda x: {x["AvgIntensity"]}, e[0].data)
+
+
+n = map(lambda x: x["AvgIntensity"], g)
+
+n = map(lambda x: {(x["CMapId"],x["ContigLength"])} , g)
+
+n = map(lambda x: {(x["CMapId"],x["ContigLength"],x["NumSites"])} , g)
+
+g = filter(lambda x: {x["NumberofLabels"] == 26 and x["AvgIntensity"]==1000.12}, b[0].data)
+
+
+
+n = map(lambda x: {(x["AvgIntensity"],x["NumberofLabels"])} , filter(lambda x: {x["NumberofLabels"] == 26 and x["AvgIntensity"]==1000.12}, b[0].data))
+
+
+
+
+#HLAVNI CAST
+
+a = find pipeline total_molecules_filtered < 2000
+
+b = for a loadfile "all.bnx"
+
+c = find alignbnx success=1 total_molecules_unfiltered<950000 total_molecules_unfiltered> 499999
+
+c = c[18]
+
+d = for c loadfile "exp_refineFinal1.xmap"
+
+e = for c loadfile "exp_refineFinal1_r.cmap"
+
+
+
+h = filter(lambda x: {any(t[0] == 4325 for t in x["Alignment"][-5:])}, d[0].data)
+
+n = map(lambda x: {x["QryContigID"]}, h)
+
+w = for c loadfile "exp_refineFinal1_q.cmap"
+
+g = filter(lambda x: {x["CMapId"] in n}, w[0].data)
+
+print g
+
+
+#KONEC HLAVNI CASTI
+
+y = avg(map(lambda x: {x["Length"]}, d[0].data))
+
+y = avg(map(lambda x: {x["NumberofLabels"]}, b[0].data))
+
+print d[0].data[10]["XmapEntryID"]
+
+
+// Definice lambda výrazu pro map() a filter()
+    //lambda_expr: "lambda" NAME ":" lambda_body
+    lambda_expr: "lambda" NAME ":" lambda_body      -> lambda_expr_structured
+           | "lambda" NAME ":" RAW_EXPR       -> lambda_expr_raw
+
+    RAW_EXPR: /[^)]+/
+
+    // Podpora tuple výstupu v map() a složitých podmínek v filter()
+    lambda_body: "(" expr ("," expr)+ ")" -> tuple_expr
+               | expr
+
+sd = [10, 100, 101]
+filtered = filter(lambda x: {filter_projects(x, [("contain_file", "exp_informaticsReport.txt")])}, sd)
+
+
+filtered = filter(lambda x: {filter_projects(x, [("contain_file", "report.txt")])}, projects)
+
+sd = [10, 100, 101]
+soubory = map(lambda x: {find_files(x, [("contain_file", "exp_informaticsReport.txt"),("contain_string", "CNV"),("size_gt", "50K")])}, sd)
+
+
+['LabelChannel', 'MoleculeID', 'Length', 'AvgIntensity', 'SNR', 'NumberofLabels', 'OriginalMoleculeId', 'ScanNumber', 'ScanDirection', 'ChipId', 'Flowcell', 'RunId', 'GlobalScanNumber']
+['int', 'int', 'float', 'float', 'float', 'int', 'int', 'int', 'int', 'string', 'int', 'int', 'int']
+{'LabelChannel': '0', 'MoleculeID': 1000, 'Length': '174885.00', 'AvgIntensity': 999.88, 'SNR': 50.15, 'NumberofLabels': 26.0, 'OriginalMoleculeId': 1000, 'ScanNumber': 1, 'ScanDirection': -1, 
+'ChipId': 'chips,SN_2UV4H26LPSYJJNWU,Run_beb1a33f-4869-4a52-95d4-af3e99bc6dd5,2282141822', 'Flowcell': '2', 'RunId': 100, 'GlobalScanNumber': 1, 
+'LabelPositions': [78490.99, 80268.0, 84077.99, 92282.99, 100656.0, 105035.99, 105052.0, 111578.99, 112820.99, 121400.0, 121427.0, 126065.99, 130571.99, 132011.99, 137966.0, 149530.0, 
+150536.99, 150738.99, 152725.99, 154351.99, 154686.0, 155424.0, 157780.0, 160318.0, 161635.0, 170460.0, 174885.0], 'QX11': [12.36, 25.95, 17.99, 28.13, 14.52, 17.42, 17.48, 30.67, 25.49, 
+25.0, 24.05, 16.79, 21.33, 11.57, 12.42, 34.12, 18.78, 14.44, 12.67, 7.65, 22.9, 35.5, 7.58, 17.77, 20.18, 29.91], 'QX12': [183.86, 214.94, 196.46, 351.44, 243.79, 85.61, 384.96, 243.17, 
+452.35, 215.46, 313.65, 310.65, 254.67, 367.71, 263.99, 118.37, 441.19, 273.93, 242.22, 177.09, 230.42, 278.11, 88.59, 314.26, 194.44, 251.6]}
+
+
+a = [{x for x in projects if int(x) > 100}]
+
+a = {[x for x in projects if int(x) > 100]}
+
+a = [0]

@@ -1,0 +1,5 @@
+#run_script script_uloha_1.txt
+
+a = find(pipeline, success == 1, total_molecules_filtered < 20000000)
+
+print(a)

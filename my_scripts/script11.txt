@@ -1,0 +1,13 @@
+#run_script script11.txt
+
+#a = find pipeline total_molecules_filtered < 3000
+
+a = find pipeline total_molecules_filtered < 3000 total_molecules_filtered > 2000
+
+b = for a loadfile "all.bnx"
+
+print b[0].data
+
+save_output "output_bnx.csv"  b[0].data
+
+save_output "output2_bnx.txt"  b[0].data

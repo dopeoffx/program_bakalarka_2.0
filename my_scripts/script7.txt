@@ -1,0 +1,5 @@
+c = find pipeline total_molecules_filtered > 2000000
+
+d =  for c select files where size_gt=2000M contain_file="all.bnx"
+
+e =  for c select files where contain_file="all.bnx" size_gt=20000k

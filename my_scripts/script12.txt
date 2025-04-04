@@ -1,0 +1,25 @@
+#run_script script12.txt
+a = [469]
+
+
+f = for a loadfile "all.bnx"
+
+
+e = find pipeline total_molecules_filtered < 3000 total_molecules_filtered > 2000
+
+u = for e loadfile "all.bnx"
+
+save
+
+print f[0].data
+
+print u[0].data
+
+#save_output "output12_bnx.csv"  u[0].data
+
+#save_output "output122_bnx.txt"  u[0].data
+
+# a = find alignbnx success=1 total_molecules_unfiltered<950000 total_molecules_unfiltered> 499999
+# a = a[18]
+
+#a = find alignbnx success=1 total_molecules_filtered < 10000000000000000000

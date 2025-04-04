@@ -1,0 +1,5 @@
+a = find alignbnx total_molecules_unfiltered < 3000
+
+b = for a loadfile "exp_refineFinal1_r.cmap"
+
+d =  for b select lines where position=inXmap(b)

@@ -1,0 +1,3 @@
+#run_script script_uloha_3.txt
+rrrr = loadfile("/data1/bionano-old/compute/jobs/480/output/contigs/exp_refineFinal1_sv/EXP_REFINEFINAL1.smap")
+print_list(rrrr.data)

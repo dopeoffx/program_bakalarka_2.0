@@ -1,0 +1,11 @@
+a = find pipeline total_molecules_filtered < 100000 total_molecules_filtered > 3000
+
+b = for a loadfile "autoNoise0_q.cmap"
+
+d = for b select lines  where SiteID=1 
+
+e = for b select sum(ascsac)  where  NumSites=134 OR NumSites=132
+
+f = for b select sum(ContigLength)  where SiteID=1 AND SiteID=2 
+
+g = for b select sum(ContigLength)  where SiteID=2 OR NumSites=132
